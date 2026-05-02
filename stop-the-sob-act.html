@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stop the SOB Act</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --red: #C0392B; --red-dark: #96281B; --red-light: #E74C3C;
+    --off-white: #F9F6F0; --cream: #EDE8DF; --charcoal: #1C1C1C; --mid: #555;
+  }
+  body { font-family: 'Barlow', sans-serif; background: var(--off-white); color: var(--charcoal); line-height: 1.6; }
+  nav {
+    background: var(--charcoal); padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 56px; position: sticky; top: 0; z-index: 100;
+  }
+  .nav-logo { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.2rem; color: white; letter-spacing: 0.05em; text-transform: uppercase; }
+  .nav-logo span { color: var(--red-light); }
+  nav a { color: #ccc; text-decoration: none; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.2s; }
+  nav a:hover { color: white; }
+  .nav-links { display: flex; gap: 2rem; }
+
+  .hero {
+    background: var(--charcoal); color: white;
+    padding: 5rem 2rem 4rem; text-align: center; position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: repeating-linear-gradient(-45deg, transparent, transparent 40px, rgba(192,57,43,0.06) 40px, rgba(192,57,43,0.06) 80px);
+  }
+  .hero-inner { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; }
+  .hero-eyebrow {
+    display: inline-block; background: var(--red); color: white;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.85rem;
+    letter-spacing: 0.15em; text-transform: uppercase; padding: 0.35rem 1rem; margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
+    font-size: clamp(3rem, 8vw, 6rem); line-height: 0.95;
+    text-transform: uppercase; letter-spacing: -0.01em; margin-bottom: 1rem;
+  }
+  .hero h1 .prefix { color: #EDE8DF; display: block; }
+  .hero h1 .highlight { color: var(--red-light); display: block; }
+  .hero-sub { font-size: 1.15rem; color: #bbb; max-width: 640px; margin: 0 auto 2rem; line-height: 1.7; }
+  .hero-sub strong { color: white; }
+
+  .urgency-banner { background: var(--red); color: white; text-align: center; padding: 1rem 2rem; font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; }
+  .urgency-banner span { color: #FFD580; }
+
+  .cta-group { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-top: 0.5rem; }
+  .btn-primary { display: inline-block; background: var(--red); color: white; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.1rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 1rem 2.5rem; text-decoration: none; transition: background 0.2s, transform 0.1s; cursor: pointer; border: none; }
+  .btn-primary:hover { background: var(--red-dark); transform: translateY(-1px); }
+  .btn-secondary { display: inline-block; background: transparent; color: white; border: 2px solid rgba(255,255,255,0.35); font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.1rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 1rem 2.5rem; text-decoration: none; transition: border-color 0.2s, background 0.2s; cursor: pointer; }
+  .btn-secondary:hover { border-color: white; background: rgba(255,255,255,0.08); }
+
+  section { padding: 4rem 2rem; }
+  .section-inner { max-width: 860px; margin: 0 auto; }
+  .section-label { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red); margin-bottom: 0.75rem; }
+  h2 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: clamp(2rem, 5vw, 3rem); text-transform: uppercase; line-height: 1; margin-bottom: 1.25rem; }
+  .prose { font-size: 1.05rem; color: #333; line-height: 1.8; max-width: 700px; }
+  .divider { width: 48px; height: 4px; background: var(--red); margin: 1.25rem 0; }
+
+  .stat-strip { background: var(--charcoal); color: white; padding: 3rem 2rem; }
+  .stat-grid { max-width: 860px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 2rem; text-align: center; }
+  .stat-num { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 3.5rem; color: var(--red-light); line-height: 1; }
+  .stat-label { font-size: 0.9rem; color: #aaa; margin-top: 0.35rem; text-transform: uppercase; letter-spacing: 0.05em; }
+
+  .actions-section { background: var(--cream); }
+  .action-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+  .action-card { background: white; border-top: 4px solid var(--red); padding: 1.75rem; }
+  .action-num { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 3.5rem; color: var(--cream); line-height: 1; margin-bottom: -0.5rem; }
+  .action-card h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.6rem; }
+  .action-card p { font-size: 0.95rem; color: #555; line-height: 1.7; }
+  .action-btn { display: inline-block; margin-top: 1.25rem; background: var(--charcoal); color: white; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.9rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.6rem 1.25rem; text-decoration: none; cursor: pointer; border: none; transition: background 0.2s; }
+  .action-btn:hover { background: var(--red); }
+
+  .scripts-section { background: white; }
+  .script-tabs { display: flex; gap: 0; margin-top: 2rem; border-bottom: 2px solid var(--cream); }
+  .script-tab { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.95rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.75rem 1.5rem; cursor: pointer; border: none; background: transparent; color: var(--mid); border-bottom: 3px solid transparent; margin-bottom: -2px; transition: all 0.2s; }
+  .script-tab.active { color: var(--red); border-bottom-color: var(--red); }
+  .script-content { display: none; margin-top: 1.5rem; }
+  .script-content.active { display: block; }
+  .script-box { background: var(--off-white); border-left: 4px solid var(--red); padding: 1.5rem 1.75rem; font-size: 0.98rem; line-height: 1.85; color: #333; white-space: pre-wrap; font-family: 'Barlow', sans-serif; }
+  .copy-btn { display: inline-block; margin-top: 1rem; background: transparent; border: 1.5px solid var(--charcoal); color: var(--charcoal); font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.5rem 1.25rem; cursor: pointer; transition: all 0.2s; }
+  .copy-btn:hover { background: var(--charcoal); color: white; }
+
+  .phone-block { background: var(--red); color: white; padding: 3.5rem 2rem; text-align: center; }
+  .phone-block p { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-bottom: 0.5rem; }
+  .phone-number { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: clamp(3rem, 8vw, 5rem); letter-spacing: 0.05em; line-height: 1; }
+  .phone-block .note { font-size: 0.95rem; margin-top: 0.75rem; color: rgba(255,255,255,0.7); font-family: 'Barlow', sans-serif; font-weight: 400; letter-spacing: 0; text-transform: none; }
+
+  .signup-section { background: var(--charcoal); color: white; padding: 4rem 2rem; text-align: center; }
+  .signup-section h2 { color: white; }
+  .signup-section .prose { color: #aaa; margin: 0 auto 2rem; }
+  .signup-form { display: flex; flex-wrap: wrap; gap: 0; max-width: 520px; margin: 0 auto; }
+  .signup-form input[type="email"] { flex: 1; min-width: 180px; padding: 0.9rem 1.25rem; font-family: 'Barlow', sans-serif; font-size: 1rem; border: 2px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.07); color: white; outline: none; transition: border-color 0.2s; }
+  .signup-form input::placeholder { color: rgba(255,255,255,0.4); }
+  .signup-form input:focus { border-color: var(--red-light); }
+  .signup-form button { background: var(--red); color: white; border: none; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.9rem 1.75rem; cursor: pointer; transition: background 0.2s; white-space: nowrap; }
+  .signup-form button:hover { background: var(--red-dark); }
+  .signup-note { font-size: 0.82rem; color: rgba(255,255,255,0.4); margin-top: 0.75rem; }
+  .signup-success { display: none; color: #7EE8A2; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.1rem; letter-spacing: 0.05em; margin-top: 1rem; }
+
+  .share-section { background: var(--off-white); text-align: center; }
+  .share-url { display: inline-block; background: white; border: 1.5px solid #ddd; color: var(--charcoal); padding: 0.75rem 1.5rem; font-family: 'Barlow Condensed', sans-serif; font-size: 1.2rem; letter-spacing: 0.05em; cursor: pointer; transition: background 0.2s; }
+  .share-url:hover { background: var(--cream); }
+
+  footer { background: #111; color: #777; text-align: center; padding: 2rem; font-size: 0.85rem; }
+  footer a { color: #999; }
+
+  @media (max-width: 600px) {
+    .nav-links { display: none; }
+    .hero { padding: 3.5rem 1.25rem 3rem; }
+    section { padding: 3rem 1.25rem; }
+    .signup-form { flex-direction: column; }
+    .signup-form button { width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Stop the <span>SOB Act</span></div>
+  <div class="nav-links">
+    <a href="#what">The Issue</a>
+    <a href="#act">Take Action</a>
+    <a href="#scripts">Scripts</a>
+    <a href="#signup">Stay Updated</a>
+  </div>
+</nav>
+
+<div class="urgency-banner">
+  <span>URGENT:</span> The House passed the Farm Bill. The Senate votes in May. <span>Time is running out.</span>
+</div>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Senate Vote Coming Soon</div>
+    <h1>
+      <span class="prefix">Stop the</span>
+      <span class="highlight">Save Our Bacon Act</span>
+    </h1>
+    <p class="hero-sub">
+      The House passed the Farm Bill <strong>224–200</strong> on April 30, 2026 — with the SOB Act buried inside. It would <strong>erase 600+ state laws</strong> protecting animals, food safety, and state sovereignty. The Senate is next. <strong>We can still stop this.</strong>
+    </p>
+    <div class="cta-group">
+      <a href="#act" class="btn-primary">Call Your Senator Now</a>
+      <a href="#scripts" class="btn-secondary">See the Script</a>
+    </div>
+  </div>
+</section>
+
+<div class="stat-strip">
+  <div class="stat-grid">
+    <div><div class="stat-num">600+</div><div class="stat-label">State laws erased</div></div>
+    <div><div class="stat-num">224–200</div><div class="stat-label">House vote, April 30</div></div>
+    <div><div class="stat-num">May</div><div class="stat-label">Senate vote window</div></div>
+    <div><div class="stat-num">~60</div><div class="stat-label">Senators still persuadable</div></div>
+  </div>
+</div>
+
+<section id="what">
+  <div class="section-inner">
+    <div class="section-label">What's at stake</div>
+    <h2>What Is the Save Our Bacon Act?</h2>
+    <div class="divider"></div>
+    <p class="prose">The Save Our Bacon Act (SOB Act) is a rebranded version of the <strong>EATS Act</strong> — legislation pushed by the National Pork Producers Council. Its core function is <strong>federal preemption</strong>: it strips states of their right to set standards on agricultural products that exceed federal minimums.</p>
+    <p class="prose" style="margin-top:1rem;">Having lost at the Supreme Court in 2023 (National Pork Producers Council v. Ross), the pork industry is now using the Farm Bill to accomplish through Congress what it couldn't win in court.</p>
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap:1rem; margin-top:2rem;">
+      <div style="border-left:3px solid var(--red); padding-left:1rem;">
+        <div style="font-weight:600; margin-bottom:0.25rem;">Wipes out Prop 12</div>
+        <div style="font-size:0.93rem; color:#555;">California's landmark farm animal protection law — and similar laws in Massachusetts, Oregon, Colorado, and Arizona — would be nullified.</div>
+      </div>
+      <div style="border-left:3px solid var(--red); padding-left:1rem;">
+        <div style="font-weight:600; margin-bottom:0.25rem;">Locks animals in cages</div>
+        <div style="font-size:0.93rem; color:#555;">Hundreds of millions of farm animals would remain in extreme confinement as the laws designed to phase them out are eliminated.</div>
+      </div>
+      <div style="border-left:3px solid var(--red); padding-left:1rem;">
+        <div style="font-weight:600; margin-bottom:0.25rem;">Strips state sovereignty</div>
+        <div style="font-size:0.93rem; color:#555;">Food safety, disease prevention, and labeling standards — many passed by voters via ballot initiative — would be overridden by federal minimums.</div>
+      </div>
+      <div style="border-left:3px solid var(--red); padding-left:1rem;">
+        <div style="font-weight:600; margin-bottom:0.25rem;">Blocks future protections</div>
+        <div style="font-size:0.93rem; color:#555;">No state could ever pass meaningful farm animal protections again. Whatever exists today is the ceiling — forever.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="phone-block">
+  <p>Senate Switchboard — Call During Business Hours</p>
+  <div class="phone-number">202-224-3121</div>
+  <p class="note">Give your zip code — they'll connect you to your senator's office directly.</p>
+</div>
+
+<section id="act" class="actions-section">
+  <div class="section-inner">
+    <div class="section-label">Take Action Now</div>
+    <h2>What You Can Do</h2>
+    <div class="divider"></div>
+    <p class="prose">The Senate vote is coming in May. Margins are tight. Constituent contacts in this window can genuinely move undecided senators.</p>
+    <div class="action-cards">
+      <div class="action-card">
+        <div class="action-num">01</div>
+        <h3>Call Your Senator</h3>
+        <p>Call <strong>202-224-3121</strong> during business hours. Give your zip — they'll connect you. Ask them to vote <strong>NO on the Farm Bill</strong> due to the Save Our Bacon Act.</p>
+        <button class="action-btn" onclick="document.getElementById('scripts').scrollIntoView({behavior:'smooth'})">See Call Script →</button>
+      </div>
+      <div class="action-card">
+        <div class="action-num">02</div>
+        <h3>Send a Follow-Up Email</h3>
+        <p>After calling, send a short email to reinforce your call. It ensures your contact is logged and adds additional weight.</p>
+        <button class="action-btn" onclick="showScript('email')">See Email Script →</button>
+      </div>
+      <div class="action-card">
+        <div class="action-num">03</div>
+        <h3>Spread the Word</h3>
+        <p>Text 10 friends. Repost this page. Most people have no idea this vote is happening — a single forward can generate multiple calls.</p>
+        <a href="#share" class="action-btn">Share This Page →</a>
+      </div>
+      <div class="action-card">
+        <div class="action-num">04</div>
+        <h3>Tag Your Senator</h3>
+        <p>Find your senator on Instagram, X, or TikTok and tag them. Public pressure on their accounts signals to other constituents that opposition is real.</p>
+        <a href="https://www.senate.gov/senators/" target="_blank" class="action-btn">Find Your Senator →</a>
+      </div>
+      <div class="action-card">
+        <div class="action-num">05</div>
+        <h3>Post in Local Groups</h3>
+        <p>Facebook groups, local subreddits, neighborhood Listservs — local posts convert at far higher rates than national advocacy content.</p>
+        <button class="action-btn" onclick="showScript('social')">Get Post Templates →</button>
+      </div>
+      <div class="action-card">
+        <div class="action-num">06</div>
+        <h3>Write an Op-Ed</h3>
+        <p>Senate offices monitor local press closely. A single letter to the editor in your senator's district can carry more weight than dozens of calls.</p>
+        <a href="mailto:?subject=Help%20me%20write%20an%20op-ed" class="action-btn">Draft One →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="scripts" class="scripts-section">
+  <div class="section-inner">
+    <div class="section-label">Scripts & Templates</div>
+    <h2>What to Say</h2>
+    <div class="divider"></div>
+    <p class="prose">Use these word-for-word or adapt them. The most important thing is making the contact.</p>
+    <div class="script-tabs">
+      <button class="script-tab active" onclick="switchTab('call', this)">Phone Call</button>
+      <button class="script-tab" onclick="switchTab('email', this)">Email</button>
+      <button class="script-tab" onclick="switchTab('social', this)">Social / Text</button>
+    </div>
+    <div id="tab-call" class="script-content active">
+      <p style="font-size:0.9rem; color:#777; margin-bottom:1rem;">Call <strong>202-224-3121</strong> · Give your zip · Ask for your senator:</p>
+      <div class="script-box" id="call-script">"Hi, my name is [NAME] and I'm a constituent from [CITY/ZIP].
+
+I'm calling to urge Senator [NAME] to vote NO on the Farm Bill in its current form. The bill includes the Save Our Bacon Act, which would override more than 600 state laws — including laws that voters passed directly through ballot initiatives — on animal welfare, food safety, and disease prevention.
+
+This is an extraordinary overreach of federal power that strips states of their right to set their own standards. It would lock hundreds of millions of farm animals into extreme confinement and block any state from ever passing meaningful protections in the future.
+
+I'm asking the Senator to oppose the Farm Bill unless the Save Our Bacon Act is removed. Thank you."</div>
+      <button class="copy-btn" onclick="copyText('call-script', this)">Copy Script</button>
+    </div>
+    <div id="tab-email" class="script-content">
+      <p style="font-size:0.9rem; color:#777; margin-bottom:1rem;">Find your senator's contact form at <a href="https://www.senate.gov/senators/" target="_blank">senate.gov/senators</a>.</p>
+      <div class="script-box" id="email-script">Subject: Please Vote NO on the Farm Bill — Remove the Save Our Bacon Act
+
+Dear Senator [NAME],
+
+I am a constituent from [CITY/ZIP], and I am writing to urge you to vote NO on the Farm Bill in its current form.
+
+The Save Our Bacon Act, included in the current version of the bill, would override more than 600 state and local laws on animal welfare, food safety, and disease prevention — including laws passed directly by voters through ballot initiatives.
+
+The House passed this bill 224–200 on April 30, 2026. The Senate is the last line of defense. Please vote NO unless this provision is removed.
+
+Thank you for your time and service.
+
+Sincerely,
+[YOUR NAME]
+[YOUR CITY/ZIP]</div>
+      <button class="copy-btn" onclick="copyText('email-script', this)">Copy Email</button>
+    </div>
+    <div id="tab-social" class="script-content">
+      <div class="script-box" id="social-script">— FOR TEXTS / DMS —
+"Hey — the Save Our Bacon Act is buried in the Farm Bill and would erase 600+ state animal welfare laws. The House passed it. Senate votes in May. Takes 5 min to call: 202-224-3121. Pass it on."
+
+— FOR INSTAGRAM / FACEBOOK —
+"The House just passed a Farm Bill with the Save Our Bacon Act inside — it wipes out 600+ state animal protection laws including California's Prop 12. The Senate votes in May. Call 202-224-3121 and ask your senator to vote NO. Every call matters. #StopSOBAct #SaveProp12"
+
+— FOR LOCAL GROUPS / REDDIT —
+"Most people in [YOUR CITY] have no idea: the House passed a Farm Bill that would override our state's animal welfare and food safety laws. It's called the Save Our Bacon Act. Senate votes this month. Takes 5 minutes: 202-224-3121."</div>
+      <button class="copy-btn" onclick="copyText('social-script', this)">Copy Templates</button>
+    </div>
+  </div>
+</section>
+
+<!-- EMAIL SIGNUP -->
+<section id="signup" class="signup-section">
+  <div class="section-inner">
+    <div class="section-label" style="color: #E74C3C;">Stay in the Fight</div>
+    <h2 style="color:white;">Get Campaign Updates</h2>
+    <div class="divider" style="background:var(--red-light); margin: 1.25rem auto;"></div>
+    <p class="prose" style="color:#aaa; margin: 0 auto 2rem;">The Senate vote is weeks away. Enter your email to receive urgent action alerts, new scripts, and campaign updates as they happen.</p>
+    <div class="signup-form" id="signup-form">
+      <input type="email" id="signup-email" placeholder="Your email address" autocomplete="email" />
+      <button onclick="submitSignup()">Stay Updated</button>
+    </div>
+    <div class="signup-success" id="signup-success">&#10003; You're in! We'll be in touch with updates.</div>
+    <p class="signup-note">No spam. Unsubscribe anytime. Your email goes directly to the campaign team.</p>
+  </div>
+</section>
+
+<section id="share" class="share-section">
+  <div class="section-inner" style="text-align:center;">
+    <div class="section-label">Multiply Your Impact</div>
+    <h2>Share This Page</h2>
+    <div class="divider" style="margin: 1.25rem auto;"></div>
+    <p class="prose" style="color:#555; margin: 0 auto 2rem;">Most people have no idea this vote is happening. Send this to anyone who cares about animal welfare, food safety, or states' rights.</p>
+    <div class="share-url" onclick="copyShareUrl(this)">stopbigpork.org — tap to copy</div>
+    <p style="color:#888; font-size:0.9rem; margin-top:1rem;">Also: <a href="https://defeateats.com/take-action" target="_blank" style="color:#666;">defeateats.com/take-action</a> lets people message their senator in ~20 seconds.</p>
+  </div>
+</section>
+
+<footer>
+  <p>Stop the SOB Act &middot; <a href="https://stopbigpork.org" target="_blank">stopbigpork.org</a> &middot; Senate Switchboard: 202-224-3121</p>
+  <p style="margin-top:0.5rem;">Share freely. Every contact matters.</p>
+</footer>
+
+<script>
+  // ============================================================
+  // STEP 4: Replace the URL below with your Google Apps Script
+  // Web App URL after completing the setup instructions.
+  // ============================================================
+  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwJF9wvgI5-2J-oUakbDXZfFZBu_qlROqQf89h1jX5sScCUO97ZWt4x_a5o05BNh_HM6g/exec';
+
+  async function submitSignup() {
+    const email = document.getElementById('signup-email').value.trim();
+    if (!email || !email.includes('@')) {
+      document.getElementById('signup-email').focus();
+      document.getElementById('signup-email').style.borderColor = 'var(--red-light)';
+      return;
+    }
+    const btn = document.querySelector('#signup-form button');
+    btn.textContent = 'Submitting...';
+    btn.disabled = true;
+    try {
+      await fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, timestamp: new Date().toISOString() })
+      });
+    } catch(e) {}
+    document.getElementById('signup-form').style.display = 'none';
+    document.getElementById('signup-success').style.display = 'block';
+  }
+
+  function switchTab(name, el) {
+    document.querySelectorAll('.script-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.script-content').forEach(c => c.classList.remove('active'));
+    document.getElementById('tab-' + name).classList.add('active');
+    el.classList.add('active');
+  }
+
+  function showScript(name) {
+    document.getElementById('scripts').scrollIntoView({behavior:'smooth'});
+    setTimeout(() => {
+      const tab = document.querySelector(`.script-tab:nth-child(${name==='email'?2:3})`);
+      switchTab(name, tab);
+    }, 400);
+  }
+
+  function copyText(id, btn) {
+    navigator.clipboard.writeText(document.getElementById(id).innerText).then(() => {
+      const orig = btn.innerText;
+      btn.innerText = 'Copied!';
+      btn.style.background = 'var(--red)';
+      btn.style.color = 'white';
+      setTimeout(() => { btn.innerText = orig; btn.style.background = ''; btn.style.color = ''; }, 2000);
+    });
+  }
+
+  function copyShareUrl(el) {
+    navigator.clipboard.writeText('https://stopbigpork.org').then(() => {
+      const orig = el.innerText;
+      el.innerText = 'Copied!';
+      setTimeout(() => el.innerText = orig, 2000);
+    });
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      document.querySelector(a.getAttribute('href'))?.scrollIntoView({behavior:'smooth'});
+    });
+  });
+</script>
+</body>
+</html>
